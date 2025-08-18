@@ -1,0 +1,107 @@
+﻿@model Eticaret.WebUI.Models.Order.CheckoutViewModel
+@{
+    ViewData["Title"] = "Satın Alma";
+}
+
+<h2>Satın Alma</h2>
+
+<div class="row">
+    <div class="col-md-7">
+        <form asp-action="Checkout" method="post" class="card card-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-2">
+                <label asp-for="FullName" class="form-label"></label>
+                <input asp-for="FullName" class="form-control" placeholder="Ad Soyad" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+
+            <div class="mb-2">
+                <label asp-for="Phone" class="form-label"></label>
+                <input asp-for="Phone" class="form-control" placeholder="05xx xxx xx xx" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-2">
+                    <label asp-for="City" class="form-label"></label>
+                    <input asp-for="City" class="form-control" placeholder="İl" />
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <label asp-for="District" class="form-label"></label>
+                    <input asp-for="District" class="form-control" placeholder="İlçe" />
+                    <span asp-validation-for="District" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="mb-2">
+                <label asp-for="AddressLine" class="form-label"></label>
+                <textarea asp-for="AddressLine" rows="3" class="form-control" placeholder="Mahalle, cadde/sokak, bina/daire no"></textarea>
+                <span asp-validation-for="AddressLine" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="PostalCode" class="form-label"></label>
+                <input asp-for="PostalCode" class="form-control" placeholder="Posta Kodu (opsiyonel)" />
+                <span asp-validation-for="PostalCode" class="text-danger"></span>
+            </div>
+
+            <!-- Adresi adres defterine de kaydet -->
+            <div class="form-check mb-3">
+                <input class="form-check-input" asp-for="SaveAddress" />
+                <label class="form-check-label" asp-for="SaveAddress"></label>
+            </div>
+
+            <!-- Ödeme Yöntemi -->
+            <div class="mb-3">
+                <label class="form-label fw-bold">Ödeme Yöntemi</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="Kapıda Ödeme" checked />
+                    <label class="form-check-label">Kapıda Ödeme</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="Havale/EFT" />
+                    <label class="form-check-label">Havale / EFT</label>
+                </div>
+            </div>
+
+            <div class="d-flex gap-2">
+                <button class="btn btn-success" type="submit">Ödemeyi Onayla</button>
+                <a asp-controller="Cart" asp-action="Index" class="btn btn-outline-secondary">Geri Dön</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-5">
+        <div class="card">
+            <div class="card-header">Sepet Özeti</div>
+            <div class="card-body p-0">
+                <table class="table mb-0">
+                    <tbody>
+                        @if (Model.Cart?.Items != null)
+                        {
+                            foreach (var i in Model.Cart.Items)
+                            {
+                                <tr>
+                                    <td>@i.Name</td>
+                                    <td class="text-end">@i.Quantity x @i.UnitPrice.ToString("C")</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Toplam</th>
+                            <th class="text-end">@Model.Cart?.Subtotal.ToString("C")</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

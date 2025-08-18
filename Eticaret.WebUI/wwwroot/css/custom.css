@@ -1,0 +1,137 @@
+﻿/* =======================
+   Genel Font ve Arka Plan
+   ======================= */
+body {
+    background-color: #f5f5f0 !important; /* açık toprak tonu */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* =======================
+   Sidebar (Sol Menü)
+   ======================= */
+.sb-sidenav {
+    background-color: #1b4332 !important; /* koyu orman yeşili */
+}
+
+    .sb-sidenav .nav-link {
+        color: #ffffff !important;
+        font-weight: 500;
+    }
+
+        .sb-sidenav .nav-link i {
+            color: #95d5b2 !important; /* açık yeşil ikon */
+        }
+
+        .sb-sidenav .nav-link:hover {
+            background-color: #40916c !important; /* orta yeşil hover */
+            color: #ffffff !important;
+        }
+
+            .sb-sidenav .nav-link:hover i {
+                color: #f4a261 !important; /* hoverda turuncu ikon */
+            }
+
+/* Sidebar Footer */
+.sb-sidenav-footer {
+    background-color: #2d6a4f !important;
+    color: #ffffff !important;
+}
+
+/* =======================
+   Üst Menü (Navbar)
+   ======================= */
+.navbar {
+    background-color: #40916c !important; /* ana yeşil */
+}
+
+    .navbar .nav-link {
+        color: #ffffff !important;
+    }
+
+        .navbar .nav-link:hover {
+            color: #f4a261 !important; /* turuncu hover */
+        }
+
+/* =======================
+   Dashboard Kartları
+   ======================= */
+.bg-primary {
+    background-color: #52b788 !important; /* yumuşak yeşil */
+}
+
+.bg-warning {
+    background-color: #f4a261 !important; /* pastel turuncu */
+}
+
+.bg-success {
+    background-color: #74c69d !important; /* açık bitki yeşili */
+}
+
+.bg-danger {
+    background-color: #d62828 !important; /* sıcak kırmızı */
+}
+
+/* =======================
+   Butonlar
+   ======================= */
+.btn-primary {
+    background-color: #40916c !important;
+    border-color: #40916c !important;
+}
+
+    .btn-primary:hover {
+        background-color: #2d6a4f !important;
+        border-color: #2d6a4f !important;
+    }
+
+.btn-danger {
+    background-color: #d62828 !important;
+    border-color: #d62828 !important;
+}
+
+    .btn-danger:hover {
+        background-color: #a4161a !important;
+        border-color: #a4161a !important;
+    }
+
+.btn-info {
+    background-color: #52b788 !important;
+    border-color: #52b788 !important;
+}
+
+    .btn-info:hover {
+        background-color: #40916c !important;
+        border-color: #40916c !important;
+    }
+
+/* =======================
+   Tablo Başlıkları
+   ======================= */
+.table thead th {
+    background-color: #1b4332 !important;
+    color: #ffffff !important;
+}
+
+/* =======================
+   Linkler
+   ======================= */
+a {
+    color: #40916c;
+}
+
+    a:hover {
+        color: #2d6a4f;
+    }
+
+/* Admin formları için ufak düzenlemeler */
+.card .form-label {
+    margin-bottom: .25rem;
+}
+
+.card .form-control, .card .form-select {
+    border-radius: .5rem;
+}
+
+.card {
+    border-radius: .75rem;
+}

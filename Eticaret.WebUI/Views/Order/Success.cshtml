@@ -1,0 +1,11 @@
+﻿@model Eticaret.Core.Entities.Order
+@{
+    ViewData["Title"] = "Sipariş Alındı";
+}
+<div class="alert alert-success">
+    <h4 class="mb-1">Teşekkürler! Siparişiniz alındı.</h4>
+    <div>Sipariş Numaranız: <strong>@Model.OrderNumber</strong></div>
+</div>
+
+<a asp-controller="Account" asp-action="Orders" class="btn btn-primary">Siparişlerimi Gör</a>
+<a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary ms-2">Anasayfa</a>

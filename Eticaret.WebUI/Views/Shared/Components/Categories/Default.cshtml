@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Category>
+
+@{
+    // Tek seferde filtreleyip tekrar kullan
+    var tumKategoriler = Model.Where(c => c.IsActive && c.IsTopMenu).ToList();
+
+    foreach (var AnaKategori in tumKategoriler.Where(c => c.ParentId == 0))
+    {
+        var AltKategoriler = tumKategoriler
+            .Where(c => c.ParentId == AnaKategori.Id)
+            .ToList();
+
+        if (AltKategoriler.Any())
+        {
+            <!-- ALT KATEGORİ VAR: DROPDOWN (oklu) -->
+            <div class="dropdown d-inline-block me-2">
+                <a class="btn dropdown-toggle" href="#" role="button"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                    @AnaKategori.Name
+                </a>
+
+                <ul class="dropdown-menu">
+                    <!-- Ana kategoriye giden kısa yol (opsiyonel) -->
+                    <li>
+                        <a class="dropdown-item fw-semibold"
+                           href="/Categories/Index/@AnaKategori.Id">
+                            Tüm @AnaKategori.Name
+                        </a>
+                    </li>
+                    <li><hr class="dropdown-divider" /></li>
+
+                    @foreach (var AltKategori in AltKategoriler)
+                    {
+                        <li>
+                            <a class="dropdown-item"
+                               href="/Categories/Index/@AltKategori.Id">
+                                @AltKategori.Name
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+        else
+        {
+            <!-- ALT KATEGORİ YOK: DİREKT LİNK -->
+            <a class="btn me-2" href="/Categories/Index/@AnaKategori.Id">
+                @AnaKategori.Name
+            </a>
+        }
+    }
+}

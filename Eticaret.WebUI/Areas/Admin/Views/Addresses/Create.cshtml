@@ -1,0 +1,18 @@
+﻿@model Eticaret.Core.Entities.Address
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Adres Ekle";
+}
+
+<form asp-action="Create" method="post" class="mt-3">
+    <partial name="_Form" model="Model" />
+    <div class="mt-3 d-flex gap-2">
+        <button class="btn btn-primary">Kaydet</button>
+        <a class="btn btn-secondary" asp-action="Index">Geri</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

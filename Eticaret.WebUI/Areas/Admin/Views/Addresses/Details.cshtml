@@ -1,0 +1,26 @@
+﻿@model Eticaret.Core.Entities.Address
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Adres Detay";
+}
+
+<dl class="row">
+    <dt class="col-sm-3">Başlık</dt>
+    <dd class="col-sm-9">@Model.Title</dd>
+    <dt class="col-sm-3">Ad Soyad</dt>
+    <dd class="col-sm-9">@Model.FullName</dd>
+    <dt class="col-sm-3">Telefon</dt>
+    <dd class="col-sm-9">@Model.Phone</dd>
+    <dt class="col-sm-3">Şehir/İlçe</dt>
+    <dd class="col-sm-9">@Model.City / @Model.District</dd>
+    <dt class="col-sm-3">Mahalle</dt>
+    <dd class="col-sm-9">@Model.Neighborhood</dd>
+    <dt class="col-sm-3">Adres</dt>
+    <dd class="col-sm-9">@Model.AddressLine</dd>
+    <dt class="col-sm-3">Posta Kodu</dt>
+    <dd class="col-sm-9">@Model.PostalCode</dd>
+    <dt class="col-sm-3">Varsayılan</dt>
+    <dd class="col-sm-9">@(Model.IsDefault ? "Evet" : "Hayır")</dd>
+</dl>
+
+<a class="btn btn-secondary" asp-action="Index">Geri</a>

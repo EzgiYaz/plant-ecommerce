@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Eticaret.Core.Entities.Order>
+@using Eticaret.Core.Entities
+@{
+    ViewData["Title"] = "Siparişlerim";
+}
+
+<h2 class="mb-3">Siparişlerim</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        Henüz siparişiniz yok.
+    </div>
+}
+else
+{
+    <table class="table table-striped align-middle">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Tarih</th>
+                <th>Toplam</th>
+                <th>Durum</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var o in Model)
+            {
+                <tr>
+                    <td>@o.OrderNumber</td>
+                    <td>@o.CreateDate.ToString("dd.MM.yyyy HH:mm")</td>
+                    <td>@o.TotalAmount.ToString("C")</td>
+                    <td>
+                        @{
+                            string durumTr = o.Status switch
+                            {
+                                OrderStatus.Pending => "Beklemede",
+                                OrderStatus.Paid => "Ödendi",
+                                OrderStatus.Preparing => "Hazırlanıyor",
+                                OrderStatus.Shipped => "Kargoya Verildi",
+                                OrderStatus.Delivered => "Teslim Edildi",
+                                OrderStatus.Cancelled => "İptal Edildi",
+                                _ => o.Status.ToString()
+                            };
+                        }
+                        @durumTr
+                    </td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-secondary"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#items-@o.Id">
+                            Ürünler
+                        </button>
+                    </td>
+                </tr>
+                <tr class="collapse" id="items-@o.Id">
+                    <td colspan="5" class="p-0">
+                        <table class="table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Ürün</th>
+                                    <th>Adet</th>
+                                    <th>Birim Fiyat</th>
+                                    <th>Ara Toplam</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var i in o.Items)
+                                {
+                                    <tr>
+                                        <td>@(i.Product?.Name ?? ("#" + i.ProductId))</td>
+                                        <td>@i.Quantity</td>
+                                        <td>@i.UnitPrice.ToString("C")</td>
+                                        <td>@((i.UnitPrice * i.Quantity).ToString("C"))</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

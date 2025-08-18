@@ -1,0 +1,64 @@
+﻿@model Eticaret.WebUI.Models.Cart.CartModel
+@{
+    ViewData["Title"] = "Sepetim";
+}
+
+<h2>Sepetim</h2>
+
+@if (Model.IsEmpty)
+{
+    <div class="alert alert-info">Sepetiniz boş.</div>
+}
+else
+{
+    <table class="table table-striped align-middle">
+        <thead>
+            <tr>
+                <th>Ürün</th>
+                <th style="width:140px">Adet</th>
+                <th>Birim</th>
+                <th>Toplam</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>
+                        <img src="~/Img/Products/@item.Image" style="width:60px;height:60px;object-fit:cover;margin-right:8px" />
+                        @item.Name
+                    </td>
+                    <td>
+                        <form asp-action="Update" asp-controller="Cart" method="post" class="d-flex">
+                            <input type="hidden" name="id" value="@item.ProductId" />
+                            <input type="number" name="qty" value="@item.Quantity" min="0" step="1" class="form-control form-control-sm me-2 qty-input" style="max-width:90px" />
+                            <button class="btn btn-primary btn-sm">Güncelle</button>
+                        </form>
+                    </td>
+                    <td>@item.UnitPrice.ToString("C")</td>
+                    <td>@item.LineTotal.ToString("C")</td>
+                    <td>
+                        <form asp-action="Remove" asp-controller="Cart" method="post">
+                            <input type="hidden" name="id" value="@item.ProductId" />
+                            <button class="btn btn-danger btn-sm">Sil</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="3" class="text-end">Ara Toplam</th>
+                <th>@Model.Subtotal.ToString("C")</th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="d-flex gap-2">
+        <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Alışverişe Devam</a>
+        <a asp-controller="Order" asp-action="Checkout" class="btn btn-success">Satın Al</a>
+        <a asp-controller="Cart" asp-action="Clear" class="btn btn-outline-danger">Temizle</a>
+    </div>
+}

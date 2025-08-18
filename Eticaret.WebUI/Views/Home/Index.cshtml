@@ -1,0 +1,36 @@
+﻿@model HomePageViewModel
+@{
+    ViewData["Title"] = "Anasayfa";
+}
+
+<partial name="_Slider" model="Model.Sliders" />
+
+<div class="my-5">
+    <h1 class="text-center" style="font-family: 'Playfair Display', serif; font-size: 2.2rem;">
+        🌿 <span style="color: #2f5233;">Size Özel Ürünlerimiz</span> 🌿
+    </h1>
+
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        @foreach (var item in Model.Products)
+        {
+            <partial name="_ProductView" model="item" />
+        }
+    </div>
+
+    <!-- === Haberler === -->
+    <section style="max-width:1120px;margin:28px auto 0;">
+        <h3 class="m-0 text-center" style="font-family:'Playfair Display',serif;
+                                     color:#2f5233;font-size:2rem;font-weight:600;">
+            Güncel Fırsatlar ve Haberler
+        </h3>
+        <div style="height:2px;max-width:380px;margin:.7rem auto 1.2rem;
+              background:linear-gradient(90deg,#e6efe8,transparent);"></div>
+
+        
+        <div class="row row-cols-1 row-cols-md-2 g-3 justify-content-center">
+            @foreach (var item in Model.News)
+            {
+                <partial name="_NewsView" model="item" />
+            }
+        </div>
+    </section>

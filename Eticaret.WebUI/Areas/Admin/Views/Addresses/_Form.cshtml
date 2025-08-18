@@ -1,0 +1,78 @@
+﻿@model Eticaret.Core.Entities.Address
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<div class="row g-3">
+
+    <!-- Kullanıcı seçimi dropdown -->
+    @{
+        var users = ViewBag.Users as List<SelectListItem>;
+    }
+    @if (users != null && users.Any())
+    {
+        <div class="col-12">
+            <label for="AppUserId" class="form-label">Kullanıcı</label>
+            <select id="AppUserId" name="AppUserId" class="form-select" required>
+                <option value="">Kullanıcı seçin...</option>
+                @foreach (var u in users)
+                {
+                    <option value="@u.Value" selected="@(u.Selected ? "selected" : null)">
+                        @u.Text
+                    </option>
+                }
+            </select>
+            <span class="text-danger" asp-validation-for="AppUserId"></span>
+        </div>
+    }
+
+    <div class="col-md-4">
+        <label asp-for="Title" class="form-label"></label>
+        <input asp-for="Title" class="form-control" />
+        <span class="text-danger" asp-validation-for="Title"></span>
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="FullName" class="form-label"></label>
+        <input asp-for="FullName" class="form-control" />
+        <span class="text-danger" asp-validation-for="FullName"></span>
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="Phone" class="form-label"></label>
+        <input asp-for="Phone" class="form-control" />
+        <span class="text-danger" asp-validation-for="Phone"></span>
+    </div>
+
+    <div class="col-md-3">
+        <label asp-for="City" class="form-label"></label>
+        <input asp-for="City" class="form-control" />
+        <span class="text-danger" asp-validation-for="City"></span>
+    </div>
+
+    <div class="col-md-3">
+        <label asp-for="District" class="form-label"></label>
+        <input asp-for="District" class="form-control" />
+        <span class="text-danger" asp-validation-for="District"></span>
+    </div>
+
+    <div class="col-md-3">
+        <label asp-for="Neighborhood" class="form-label"></label>
+        <input asp-for="Neighborhood" class="form-control" />
+    </div>
+
+    <div class="col-md-3">
+        <label asp-for="PostalCode" class="form-label"></label>
+        <input asp-for="PostalCode" class="form-control" />
+    </div>
+
+    <div class="col-12">
+        <label asp-for="AddressLine" class="form-label"></label>
+        <textarea asp-for="AddressLine" class="form-control" rows="3"></textarea>
+        <span class="text-danger" asp-validation-for="AddressLine"></span>
+    </div>
+
+    <div class="col-12 form-check">
+        <input class="form-check-input" asp-for="IsDefault" />
+        <label class="form-check-label" asp-for="IsDefault"></label>
+    </div>
+
+</div>

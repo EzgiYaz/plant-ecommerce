@@ -1,0 +1,73 @@
+﻿<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light custom-navbar border-bottom mb-3">
+        <div class="container-fluid">
+
+            <a class="navbar-brand d-flex align-items-center p-2"
+               asp-area="" asp-controller="Home" asp-action="Index"
+               style="display:flex; align-items:center;">
+
+           
+                <div style="background-color:#edf7f1; border-radius:50%; padding:6px; display:flex; align-items:center; justify-content:center; margin-right:8px;">
+                    <img src="~/Img/Logo/logo1.png" alt="LunaLeaf" style="height:30px;" />
+                </div>
+
+              
+                <span style="color:#2f5d50; font-size:20px; font-family:'Playfair Display', serif; font-weight:600; letter-spacing:0.5px;">
+                    LUNALEAF
+                </span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-pro" asp-controller="Home" asp-action="Index">Anasayfa</a>
+                    </li>
+                    @await Component.InvokeAsync("Categories")
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-pro" asp-controller="Home" asp-action="ContactUs">İletişim</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav me-3">
+                    <li class="nav-item d-flex align-items-center">
+                        <div class="cart-wrap d-flex align-items-center">
+                            @await Component.InvokeAsync("CartSummary")
+                        </div>
+                    </li>
+                </ul>
+
+                <form asp-controller="Products" asp-action="Index" method="get" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 header-search" role="search">
+                    <input name="q" type="search" class="form-control" placeholder="Ara..." aria-label="Search">
+                </form>
+
+                @if (Context.User.Identity.IsAuthenticated)
+                {
+                    <div class="dropdown text-end">
+                        <a class="nav-link nav-link-pro dropdown-toggle" href="#" data-bs-toggle="dropdown">Hesabım</a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-elevated">
+                            <li><a class="dropdown-item" asp-controller="Account" asp-action="Index">Kullanıcı Bilgilerim</a></li>
+                            <li><a class="dropdown-item" asp-controller="Account" asp-action="Orders">Siparişlerim</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item text-danger" asp-controller="Account" asp-action="SignOut">Oturumu Kapat</a></li>
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                    <div class="dropdown text-end">
+                        <a class="nav-link nav-link-pro dropdown-toggle" href="#" data-bs-toggle="dropdown">Giriş Yap</a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-elevated">
+                            <li><a class="dropdown-item" asp-controller="Account" asp-action="SignIn">Giriş</a></li>
+                            <li><a class="dropdown-item" asp-controller="Account" asp-action="SignUp">Üye Ol</a></li>
+                        </ul>
+                    </div>
+                }
+            </div>
+        </div>
+    </nav>
+</header>

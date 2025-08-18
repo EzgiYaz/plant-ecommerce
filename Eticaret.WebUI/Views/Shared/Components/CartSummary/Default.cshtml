@@ -1,0 +1,10 @@
+﻿@model Eticaret.WebUI.Models.Cart.CartModel
+
+<a class="nav-link d-flex align-items-center gap-2 cart-link" href="/Cart">
+    <i class="bi bi-bag"></i>
+    <span class="fw-semibold">Sepet</span>
+    <span class="badge rounded-pill bg-success-subtle text-success-emphasis px-2">
+        @Model.TotalQuantity
+    </span>
+    <span class="text-body-secondary">— @Model.Subtotal.ToString("C")</span>
+</a>

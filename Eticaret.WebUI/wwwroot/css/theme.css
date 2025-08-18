@@ -1,0 +1,299 @@
+﻿/* 1) Renk Paleti */
+:root {
+    /* Ana yeşiller */
+    --green-sage: #A8D5BA; /* ana pastel yeşil */
+    --green-sage-600: #96C9A5; /* hover/koyu */
+    --green-moss: #6B8F71; /* koyu tonlar */
+    /* Nötr ve zemin */
+    --bg-cream: #E4F1E1; /* daha belirgin pastel yeşil zemin */
+    --bg-stone: #D8E8D5; /* ikinci zemin (daha koyu şeritler) */
+    --text-ink: #2F3E36; /* koyu yazı */
+    --text-muted: #6C7A73; /* ikincil yazı */
+    /* Vurgu tonları */
+    --terra: #D9A38F; /* terracotta */
+    --terra-600: #C78E78;
+    --sun-soft: #F4E7A1; /* pastel sarı */
+    --sky-soft: #D2E7F3; /* pastel mavi */
+    /* Çizgi & gölge */
+    --line-soft: rgba(47,62,54,.12);
+    --shadow-soft: 0 6px 24px rgba(47,62,54,.08);
+}
+
+/* 2) Genel Tipografi & Zemin */
+html, body {
+    background: var(--bg-cream);
+    color: var(--text-ink);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-ink);
+    letter-spacing: .2px;
+}
+
+small, .text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* 3) Linkler */
+a {
+    color: var(--green-moss);
+    text-decoration: none;
+}
+
+    a:hover {
+        color: var(--green-sage-600);
+        text-decoration: underline;
+    }
+
+/* 4) Kartlar */
+.card {
+    border: 1px solid var(--line-soft);
+    box-shadow: var(--shadow-soft);
+    border-radius: 14px;
+    background: #fff;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+
+    .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(47,62,54,.15);
+    }
+
+.card-header {
+    background: var(--bg-stone);
+    border-bottom: 1px solid var(--line-soft);
+}
+
+/* 5) Navbar */
+.navbar {
+    background: #fff;
+    border-bottom: 1px solid var(--line-soft);
+}
+
+    .navbar .nav-link {
+        color: var(--text-ink);
+    }
+
+        .navbar .nav-link:hover,
+        .navbar .nav-link:focus {
+            color: var(--green-moss);
+        }
+
+/* 6) Butonlar */
+.btn {
+    border-radius: 12px;
+    font-weight: 600;
+    letter-spacing: .2px;
+}
+
+/* Primary */
+.btn-primary {
+    background: var(--green-sage);
+    border-color: var(--green-sage);
+    color: #fff;
+}
+
+    .btn-primary:hover, .btn-primary:focus {
+        background: var(--green-sage-600);
+        border-color: var(--green-sage-600);
+        color: #fff;
+    }
+
+/* Secondary */
+.btn-secondary {
+    background: var(--terra);
+    border-color: var(--terra);
+    color: #fff;
+}
+
+    .btn-secondary:hover, .btn-secondary:focus {
+        background: var(--terra-600);
+        border-color: var(--terra-600);
+        color: #fff;
+    }
+
+/* Outline */
+.btn-outline-primary {
+    color: var(--green-moss);
+    border-color: var(--green-sage);
+    background: transparent;
+}
+
+    .btn-outline-primary:hover {
+        color: #fff;
+        background: var(--green-sage);
+        border-color: var(--green-sage);
+    }
+
+/* 7) Formlar */
+.form-control {
+    border-radius: 12px;
+    border: 1px solid var(--line-soft);
+    background: #fff;
+}
+
+    .form-control:focus {
+        border-color: var(--green-sage-600);
+        box-shadow: 0 0 0 .2rem rgba(150,201,165,.25);
+    }
+
+.input-group-text {
+    background: var(--bg-stone);
+    border-color: var(--line-soft);
+    color: var(--text-ink);
+}
+
+/* 8) Alert & Badge */
+.alert-success {
+    background: #E8F4EC;
+    border-color: #D9EBDD;
+    color: var(--green-moss);
+}
+
+.alert-info {
+    background: #EDF6FB;
+    border-color: #D8EAF5;
+    color: #3E667A;
+}
+
+.alert-warning {
+    background: #FFF9E3;
+    border-color: #F6EDC5;
+    color: #7A673E;
+}
+
+.badge.bg-primary {
+    background: var(--green-sage) !important;
+}
+
+.badge.bg-secondary {
+    background: var(--terra) !important;
+}
+
+.badge.bg-warning {
+    background: var(--sun-soft) !important;
+    color: #6B5E2C;
+}
+
+/* 9) Footer */
+.site-footer {
+    background: var(--green-sage-600);
+    color: #fff;
+    width: 100%;
+}
+
+    .site-footer h5, .site-footer h6 {
+        color: #fff;
+        font-weight: 700;
+    }
+
+    .site-footer a {
+        color: #fff;
+    }
+
+        .site-footer a:hover {
+            color: var(--bg-cream);
+        }
+
+    .site-footer .container {
+        padding-top: 24px;
+        padding-bottom: 24px;
+    }
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.28);
+}
+
+.social-link {
+    font-size: 1.2rem;
+}
+
+/* 10) Yardımcı sınıflar */
+.text-moss {
+    color: var(--green-moss) !important;
+}
+
+.text-ink {
+    color: var(--text-ink) !important;
+}
+
+.bg-cream {
+    background: var(--bg-cream) !important;
+}
+
+.bg-stone {
+    background: var(--bg-stone) !important;
+}
+
+.bg-sage {
+    background: var(--green-sage) !important;
+    color: #fff !important;
+}
+
+/* 11) Geçişler */
+a, .btn, .form-control, .card {
+    transition: all .18s ease;
+}
+
+/* bunları da sevebilirsiniz kısmı için */
+.related-products-section {
+    background-color: #d8e8d5; /* pastel yeşil */
+}
+
+/* Satır genişliğini biraz artır */
+.related-products-row {
+    max-width: 1200px; 
+    margin: 0 auto;
+}
+
+/* Üst-alt boşluk */
+.related-products-section .container {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+}
+
+/* Ürün görsel alanı boyut sabitleme */
+.related-products-row .product-image-container {
+    width: 100%;
+    height: 300px; /* tüm ürünler eşit yükseklik */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+    .related-products-row .product-image-container img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain; /* kırpılmadan sığdır */
+    }
+
+.custom-navbar {
+    background-color: var(--green-sage-600); /* footer ile aynı yeşil */
+    box-shadow: 0 2px 10px rgba(47,62,54,.06);
+}
+
+    .custom-navbar .navbar-brand {
+        color: #fff;
+        font-weight: 700;
+    }
+
+        .custom-navbar .navbar-brand:hover {
+            color: var(--bg-cream);
+        }
+
+    .custom-navbar .nav-link {
+        color: #fff;
+        font-weight: 600;
+    }
+
+        .custom-navbar .nav-link:hover,
+        .custom-navbar .nav-link:focus {
+            color: var(--bg-cream);
+        }
+
+        .custom-navbar .nav-link.active {
+            border-bottom: 2px solid var(--bg-cream);
+        }
+
+  

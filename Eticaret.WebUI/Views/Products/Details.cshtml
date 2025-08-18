@@ -1,0 +1,59 @@
+﻿@model ProductDetailViewModel
+
+@{
+    ViewData["Title"] = Model.Product.Name;
+    var returnUrl = Context.Request.Path + Context.Request.QueryString;
+}
+
+<!-- Product section-->
+<section class="">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6">
+                <img class="card-img-top mb-5 mb-md-0" src="~/Img/Products/@Model.Product.Image" alt="...">
+            </div>
+            <div class="col-md-6">
+                <div class="small mb-1">SKU: @Model.Product.ProductCode</div>
+                <h1 class="display-5 fw-bolder">@Model.Product.Name</h1>
+                <div class="fs-5 mb-5">
+                    @* <span class="text-decoration-line-through">$45.00</span> *@
+                    <span>@Model.Product.Price.ToString("c")</span>
+                </div>
+                @* Ürün açıklaması *@
+                <p class="lead product-description">
+                    @Model.Product.Description
+                </p>
+
+                @* === Sepete Ekle Formu (Adım 7) === *@
+                <form asp-controller="Cart" asp-action="Add" method="post" class="d-flex">
+                    <input type="hidden" name="id" value="@Model.Product.Id" />
+                    <input type="hidden" name="returnUrl" value="@returnUrl" />
+
+                    <input class="form-control text-center me-3" type="number" name="qty" value="1" min="1" style="max-width: 5rem" />
+
+                    <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                        <i class="bi-cart-fill me-1"></i>
+                        Sepete Ekle
+                    </button>
+                </form>
+                @* === Bitiş === *@
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related items section-->
+<section class="related-products-section">
+    <div class="container py-4">
+        <h2 class="fw-bolder mb-4 text-center">Bunları da Sevebilirsiniz</h2>
+
+        <div class="row justify-content-center related-products-row">
+            @foreach (var item in Model.RelatedProducts)
+            {
+                <div class="col-10 col-sm-6 col-md-4 col-lg-3 mb-4">
+                    <partial name="_ProductView" model="item" />
+                </div>
+            }
+        </div>
+    </div>
+</section>

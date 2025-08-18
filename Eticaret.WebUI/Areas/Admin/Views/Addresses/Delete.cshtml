@@ -1,0 +1,20 @@
+﻿@model Eticaret.Core.Entities.Address
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Adres Sil";
+}
+<h3>Bu adresi silmek istediğinizden emin misiniz?</h3>
+
+<div class="alert alert-warning">
+    <p><strong>@Model.Title</strong> - @Model.FullName</p>
+    <p>@Model.AddressLine, @Model.District/@Model.City @Model.PostalCode</p>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="d-flex gap-2">
+        <button class="btn btn-danger">Sil</button>
+        <a class="btn btn-secondary" asp-action="Index">Vazgeç</a>
+    </div>
+</form>

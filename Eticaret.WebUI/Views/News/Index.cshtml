@@ -1,0 +1,21 @@
+﻿@model IEnumerable<News>
+
+@{
+    ViewData["Title"] = "Kampanya ve Duyurular";
+}
+<section style="max-width:1120px;margin:28px auto 0;">
+    <h3 class="m-0 text-center" style="font-family:'Playfair Display',serif;
+                                     color:#2f5233;font-size:2rem;font-weight:600;">
+        Güncel Fırsatlar ve Haberler
+    </h3>
+    <div style="height:2px;max-width:380px;margin:.7rem auto 1.2rem;
+              background:linear-gradient(90deg,#e6efe8,transparent);"></div>
+
+
+    <div class="row row-cols-1 row-cols-md-2 g-3 justify-content-center">
+        @foreach (var item in Model)
+        {
+            <partial name="_NewsView" model="item" />
+        }
+    </div>
+</section>

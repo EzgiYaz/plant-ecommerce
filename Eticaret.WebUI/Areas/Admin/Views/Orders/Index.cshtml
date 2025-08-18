@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Eticaret.Core.Entities.Order>
+@using Eticaret.Core.Entities
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "Siparişler";
+}
+
+<table class="table table-striped align-middle">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Müşteri</th>
+            <th>Tarih</th>
+            <th>Toplam</th>
+            <th>Durum</th>
+            <th class="text-end">İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var o in Model)
+        {
+            // Durumu Türkçeleştir (ekstra extension'a gerek yok)
+            string durumTr = o.Status switch
+            {
+                OrderStatus.Pending => "Beklemede",
+                OrderStatus.Paid => "Ödendi",
+                OrderStatus.Preparing => "Hazırlanıyor",
+                OrderStatus.Shipped => "Kargoya Verildi",
+                OrderStatus.Delivered => "Teslim Edildi",
+                OrderStatus.Cancelled => "İptal Edildi",
+                _ => o.Status.ToString()
+            };
+
+            <tr>
+                <td>
+                    <a asp-area="Admin"
+                       asp-controller="Orders"
+                       asp-action="Details"
+                       asp-route-id="@o.Id">
+                        @o.OrderNumber
+                    </a>
+                </td>
+                <td>
+                    @(o.AppUser != null
+                                    ? $"{o.AppUser.Name} {o.AppUser.Surname} ({o.AppUser.Email})"
+                                    : "—")
+            </td>
+            <td>@o.CreateDate.ToString("dd.MM.yyyy HH:mm")</td>
+            <td>@o.TotalAmount.ToString("C")</td>
+            <td>@durumTr</td>
+            <td class="text-end">
+                <a class="btn btn-sm btn-success"
+                   asp-area="Admin"
+                   asp-controller="Orders"
+                   asp-action="Details"
+                   asp-route-id="@o.Id">Detay</a>
+            </td>
+        </tr>
+                }
+    </tbody>
+</table>

@@ -1,0 +1,83 @@
+﻿@model Eticaret.Core.Entities.Order
+@using Eticaret.Core.Entities
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Sipariş Detay – @Model.OrderNumber</h2>
+
+<div class="mb-3">
+    <form asp-action="SetStatus" method="post" class="d-flex gap-2">
+        <input type="hidden" name="id" value="@Model.Id" />
+        <select class="form-select w-auto" name="status"
+                asp-for="Status"
+                asp-items="Html.GetEnumSelectList<Eticaret.Core.Entities.OrderStatus>()"></select>
+        <button class="btn btn-primary">Durumu Güncelle</button>
+    </form>
+</div>
+
+<div class="row">
+    <!-- Sol blok: müşteri ve teslimat -->
+    <div class="col-md-6">
+        <h5>Müşteri</h5>
+        <p>
+            @(Model.AppUser != null
+                        ? (Model.AppUser.Name + " " + Model.AppUser.Surname + " (" + Model.AppUser.Email + ")")
+                        : "—")
+        </p>
+
+        <h5 class="mt-3">Teslimat</h5>
+        <p>
+            @Model.ShipFullName - @Model.ShipPhone <br />
+            @Model.ShipAddressLine, @Model.ShipDistrict/@Model.ShipCity @Model.ShipPostalCode
+        </p>
+    </div>
+
+    <!-- Sağ blok: özet -->
+    <div class="col-md-6">
+        <h5>Özet</h5>
+        <p>Toplam: <strong>@Model.TotalAmount.ToString("C")</strong></p>
+
+        @{
+            var durumTr = Model.Status switch
+            {
+                OrderStatus.Pending => "Beklemede",
+                OrderStatus.Paid => "Ödendi",
+                OrderStatus.Preparing => "Hazırlanıyor",
+                OrderStatus.Shipped => "Kargoya Verildi",
+                OrderStatus.Delivered => "Teslim Edildi",
+                OrderStatus.Cancelled => "İptal Edildi",
+                _ => Model.Status.ToString()
+            };
+        }
+        <p>Durum: <strong>@durumTr</strong></p>
+
+        <!-- Yeni: Ödeme Yöntemi -->
+        <p>Ödeme Yöntemi: <strong>@(string.IsNullOrWhiteSpace(Model.PaymentMethod) ? "—" : Model.PaymentMethod)</strong></p>
+
+        <p>Tarih: @Model.CreateDate.ToString("dd.MM.yyyy HH:mm")</p>
+    </div>
+</div>
+
+<h4 class="mt-4">Ürünler</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ürün</th>
+            <th>Adet</th>
+            <th>Birim</th>
+            <th>Ara Toplam</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in Model.Items)
+        {
+            <tr>
+                <td>@(i.Product?.Name) (@i.ProductId)</td>
+                <td>@i.Quantity</td>
+                <td>@i.UnitPrice.ToString("C")</td>
+                <td>@((i.UnitPrice * i.Quantity).ToString("C"))</td>
+            </tr>
+        }
+    </tbody>
+</table>
