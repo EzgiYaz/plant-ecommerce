@@ -38,15 +38,15 @@ Yöneticiler ise admin paneli üzerinden ürün, kategori, marka ve sipariş yö
 
 | Ana Sayfa | Ürün Detay | Kategori |
 |-----------|------------|----------|
-| ![home](docs/screenshots/home.png) | ![product-detail](docs/screenshots/product-detail.png) | ![category](docs/screenshots/category.png) |
+| ![home](docs/screenshots/home.png.png) | ![product-detail](docs/screenshots/product-detail.png.png) | ![category](docs/screenshots/category.png.png) |
 
 | Sepet | Satın Alma | Siparişlerim |
 |-------|------------|--------------|
-| ![cart](docs/screenshots/cart.png) | ![checkout](docs/screenshots/checkout.png) | ![orders](docs/screenshots/orders.png) |
+| ![cart](docs/screenshots/cart.png.png) | ![checkout](docs/screenshots/checkout.png.png) | ![orders](docs/screenshots/orders.png.png) |
 
 | Üye Giriş | Üye Ol | İletişim |
 |-----------|--------|----------|
-| ![login](docs/screenshots/login.png) | ![signup](docs/screenshots/signup.png) | ![contact](docs/screenshots/contact.png) |
+| ![login](docs/screenshots/login.png.png) | ![signup](docs/screenshots/signup.png.png) | ![contact](docs/screenshots/contact.png.png) |
 
 ---
 
@@ -54,11 +54,11 @@ Yöneticiler ise admin paneli üzerinden ürün, kategori, marka ve sipariş yö
 
 | Dashboard | Ürün Listesi | Siparişler |
 |-----------|--------------|------------|
-| ![admin-dashboard](docs/screenshots/admin-dashboard.png) | ![admin-products](docs/screenshots/admin-products.png) | ![admin-orders](docs/screenshots/admin-orders.png) |
+| ![admin-dashboard](docs/screenshots/admin-dashboard.png.png) | ![admin-products](docs/screenshots/admin-products.png.png) | ![admin-orders](docs/screenshots/admin-orders.png.png) |
 
 | Sipariş Detay |  
 |---------------|  
-| ![admin-order-detail](docs/screenshots/admin-order-detail.png) |  
+| ![admin-order-detail](docs/screenshots/admin-order-detail.png.png) |  
 
 ---
 
