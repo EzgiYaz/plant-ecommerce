@@ -49,6 +49,12 @@ Yöneticiler ise admin paneli üzerinden ürün, kategori, marka ve sipariş yö
 ### Ödeme / Checkout
 ![Checkout](screenshots/checkout.png)
 
+### Siparişlerim
+![Orders](screenshots/orders.png)
+
+### İletişim Sayfası
+![Contact](screenshots/contact.png)
+
 ### Giriş Ekranı
 ![Login](screenshots/login.png)
 
